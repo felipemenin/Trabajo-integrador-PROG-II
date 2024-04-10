@@ -1,18 +1,49 @@
 let express = require('express')
 
 let mercadoLibreController = {
-    index: 'funcion que lleva a la home.ejs',
+    index: function(req, res){
+        return res.render('home',{})
+    },
 
-    login: 'funcion que lleva a login.ejs',
+    login: function(req, res){
+        return res.render('login',{})
+    },
 
-    product: 'funcion que lleva a product.ejs o product-add.ejs',
+    product: function(req, res){
+        // return res.render('product',{})
+        if(req.params.productAdd == undefined ){
+            return res.render('product',{})
+        }
+        else if (req.params.productAdd == 'add'){
+            return res.render('product-add',{})
+        }
+    },
 
-    profile: 'funcion que lleva a profile.ejs o profile-edit.ejs',
+    profile: function(req, res){
+        if(req.params.profileEdit == undefined ){
+            return res.render('profile',{})
+        }
+        else if (req.params.profileEdit == 'edit'){
+            return res.render('profile-edit',{})
+        }
+    },
 
-    register: 'funcion que lleva a register.ejs',
+    register: function(req, res){
+        return res.render('register',{})
+    },
     
-    search: 'funcion que lleva a search-results.ejs dependiendo lo que se paso en el parametro obligatorio',
+    search: function(req, res){
+        let buscado= req.params.searched
+        let rta= []
+        for (let i = 0; i < 'faltalista'; i++) {
+            if (buscado == 'faltalista'[i].buscado ) {
+                rta.push('faltalista'[i])
+        return res.render('search-results',{})
+    }
+}
 
 }
+}
+
 
 module.exports = mercadoLibreController;
