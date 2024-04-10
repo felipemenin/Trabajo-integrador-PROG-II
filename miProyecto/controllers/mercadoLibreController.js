@@ -10,7 +10,7 @@ let mercadoLibreController = {
     },
 
     product: function(req, res){
-        // return res.render('product',{})
+
         if(req.params.productAdd == undefined ){
             return res.render('product',{})
         }
