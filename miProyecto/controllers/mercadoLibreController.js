@@ -33,14 +33,14 @@ let mercadoLibreController = {
     },
     
     search: function(req, res){
-        let buscado= req.params.searched
-        let rta= []
-        for (let i = 0; i < 'faltalista'; i++) {
-            if (buscado == 'faltalista'[i].buscado ) {
-                rta.push('faltalista'[i])
+        // let buscado= req.params.searched
+        // let rta= []
+        // for (let i = 0; i < 'faltalista'; i++) {
+        //     if (buscado == 'faltalista'[i].buscado ) {
+        //         rta.push('faltalista'[i])
         return res.render('search-results',{})
-    }
-}
+//     }
+// }
 
 }
 }
