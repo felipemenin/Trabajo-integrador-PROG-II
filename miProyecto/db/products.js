@@ -1,8 +1,10 @@
-let products = [
+let express = require('express')
+
+let products = {lista:[
   {
     id: 1,
     imagen: null,
-    nombre: "Apple Iphone 15 pro max",
+    nombre: "Iphone 15 pro max",
     descripcion:
       "El iPhone 15 Pro Max es el último buque insignia de Apple, con un diseño elegante y una potente tecnología. Con una pantalla OLED de alta calidad y una cámara avanzada, ofrece imágenes y videos impresionantes. Su rendimiento mejorado y la integración de características innovadoras lo convierten en un dispositivo líder en el mercado de teléfonos inteligentes",
     comentarios: [
@@ -29,7 +31,7 @@ let products = [
   {
     id: 2,
     imagen: null,
-    nombre: "Apple Ipad Pro",
+    nombre: "Ipad Pro",
     descripcion:
       "El iPad Pro es una potente tableta diseñada por Apple, que ofrece un rendimiento excepcional y una pantalla impresionante. Con su diseño delgado y elegante, es perfecto para la productividad y el entretenimiento en cualquier lugar. Su compatibilidad con el Apple Pencil y el Magic Keyboard lo convierte en una herramienta versátil para crear y trabajar en movimiento.",
     comentarios: [
@@ -83,7 +85,7 @@ let products = [
   {
     id: 4,
     imagen: null,
-    nombre: "Apple Airpods Pro",
+    nombre: "Airpods Pro",
     descripcion:
       "Los AirPods Pro de Apple son auriculares inalámbricos con cancelación activa de ruido, diseñados para brindar una experiencia auditiva inmersiva. Con su ajuste personalizable, son cómodos de usar durante largos períodos de tiempo. Además, ofrecen una calidad de sonido excepcional y una conexión estable con dispositivos Apple. Su estuche de carga inalámbrica los hace convenientes para llevarlos a cualquier parte y mantenerlos siempre listos para usar.",
     comentarios: [
@@ -137,7 +139,7 @@ let products = [
   {
     id: 6,
     imagen: null,
-    nombre: "Apple Macbook Pro",
+    nombre: "Macbook Pro",
     descripcion:
       "El MacBook Pro es una poderosa computadora portátil diseñada por Apple para usuarios profesionales y creativos. Con un diseño elegante y delgado, ofrece un rendimiento excepcional gracias a su potente procesador y gráficos avanzados. La pantalla Retina de alta resolución y los altavoces de calidad mejoran la experiencia visual y auditiva. Además, cuenta con características como el Touch Bar y Touch ID para una mayor comodidad y seguridad. Es ideal para tareas exigentes como edición de video, diseño gráfico y programación.",
     comentarios: [
@@ -164,7 +166,7 @@ let products = [
   {
     id: 7,
     imagen: null,
-    nombre: "Apple iMac",
+    nombre: "iMac",
     descripcion:
       "El iMac es una computadora de escritorio todo-en-uno diseñada por Apple que combina potencia y elegancia en un único dispositivo. Con su pantalla Retina de alta resolución y su rendimiento de primera clase, es ideal para tareas creativas y profesionales. Su diseño delgado y minimalista oculta potentes componentes internos que ofrecen un rendimiento excepcional en un espacio reducido. Es una opción popular para aquellos que buscan un equipo potente y con estilo para su espacio de trabajo o entretenimiento en el hogar.",
     comentarios: [
@@ -218,7 +220,7 @@ let products = [
   {
     id: 9,
     imagen: null,
-    nombre: "Apple Airpods Max",
+    nombre: "Airpods Max",
     descripcion:
       "Los AirPods Max son auriculares inalámbricos de diadema de alta gama diseñados por Apple. Ofrecen una experiencia de audio excepcional con calidad de estudio, gracias a sus controladores dinámicos personalizados y la tecnología de cancelación activa de ruido. Su diseño elegante y ergonómico incluye características como almohadillas de espuma viscoelástica y una diadema de malla de acero inoxidable que proporcionan comodidad durante largas sesiones de escucha. Además, cuentan con funcionalidades como el audio espacial y el seguimiento de la cabeza, lo que ofrece una experiencia de sonido envolvente y personalizada.",
     comentarios: [
@@ -245,7 +247,7 @@ let products = [
   {
     id: 10,
     imagen: null,
-    nombre: "Apple Mac Pro",
+    nombre: "Mac Pro",
     descripcion:
       "El Apple Mac Pro es una estación de trabajo de alto rendimiento diseñada para usuarios profesionales que requieren capacidades de computación intensivas. Con su diseño modular, permite a los usuarios personalizar y expandir el hardware según sus necesidades específicas, lo que incluye opciones de CPU, GPU, memoria y almacenamiento. Equipado con potentes procesadores Intel Xeon y gráficos AMD, ofrece un rendimiento excepcional para tareas como edición de video, renderizado 3D, desarrollo de software y diseño gráfico. Además, cuenta con un sistema de refrigeración avanzado que mantiene los componentes funcionando de manera óptima incluso durante las cargas de trabajo más exigentes. Es la elección ideal para profesionales creativos y técnicos que buscan la máxima potencia y flexibilidad en su trabajo.",
     comentarios: [
@@ -269,4 +271,7 @@ let products = [
       },
     ],
   },
-];
+]
+};
+
+module.exports = products

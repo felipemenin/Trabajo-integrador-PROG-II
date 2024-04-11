@@ -1,3 +1,5 @@
+let express = require('express')
+
 let usuarios = [
   {
     id: 1,
@@ -40,3 +42,5 @@ let usuarios = [
     foto_perfil: null,
   },
 ];
+
+module.exports = usuarios

@@ -1,8 +1,12 @@
 let express = require('express')
+let db= require('../db/products')
+let users= require('../db/usuarios')
+
+
 
 let mercadoLibreController = {
     index: function(req, res){
-        return res.render('home',{})
+        return res.render('home',{info: db})
     },
 
     login: function(req, res){
@@ -11,17 +15,17 @@ let mercadoLibreController = {
 
     product: function(req, res){
         let id = req.params.idProducto
-        let rta = []
+        let rta;
         for (let i = 0; i < db.lista.length; i++) {
-            if (idProducto == db.lista[i].id ) {
-                rta.push(db.lista[i])
+            if (id.toLowerCase() === db.lista[i].nombre.toLowerCase() ) {
+                rta=db.lista[i]
         
             }}
         if (rta.length === 0) {
             return  res.send('El producto no esta disponible')
         }
         else{
-        return  res.render('product', {})
+        return  res.render('product', {info: rta})
     }},
 
     profile: function(req, res){
