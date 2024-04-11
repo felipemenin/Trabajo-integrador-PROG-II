@@ -4,7 +4,7 @@
 
 /*====== Variables ======*/
 :root {
-  --yellow: #EAC926;
+  --yellow: #303b7a;
   --dark-blue: #03264C;
   --light-blue: #1259c3;
   --gray: #666666;
@@ -154,7 +154,7 @@ hr {
 
 /*====== Banner ======*/
 .banner {
-  background-image: url(/images/img-home-banner.jpg);
+  background-image: url(/images/peraBanner1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
