@@ -10,14 +10,19 @@ let mercadoLibreController = {
     },
 
     product: function(req, res){
-
-        if(req.params.productAdd == undefined ){
-            return res.render('product',{})
+        let id = req.params.idProducto
+        let rta = []
+        for (let i = 0; i < db.lista.length; i++) {
+            if (idProducto == db.lista[i].id ) {
+                rta.push(db.lista[i])
+        
+            }}
+        if (rta.length === 0) {
+            return  res.send('El producto no esta disponible')
         }
-        else if (req.params.productAdd == 'add'){
-            return res.render('product-add',{})
-        }
-    },
+        else{
+        return  res.render('product', {})
+    }},
 
     profile: function(req, res){
         if(req.params.profileEdit == undefined ){
@@ -31,7 +36,11 @@ let mercadoLibreController = {
     register: function(req, res){
         return res.render('register',{})
     },
-    
+
+    add: function(req,res){
+        return res.render('product-add',{})
+    }
+    ,
     search: function(req, res){
         // let buscado= req.params.searched
         // let rta= []
@@ -43,7 +52,7 @@ let mercadoLibreController = {
 // }
 
 }
-}
+    }
 
 
 module.exports = mercadoLibreController;

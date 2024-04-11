@@ -6,7 +6,9 @@ router.get('/', mercadoLibreController.index);
 
 router.get('/login', mercadoLibreController.login);
 
-router.get('/product/:productAdd?', mercadoLibreController.product);
+router.get('/product/:idProducto', mercadoLibreController.product);
+
+router.get('/productAdd', mercadoLibreController.add)
 
 router.get('/profile/:profileEdit?', mercadoLibreController.profile);
 
