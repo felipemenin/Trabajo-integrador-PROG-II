@@ -45,18 +45,25 @@ let mercadoLibreController = {
         return res.render('product-add',{})
     }
     ,
-    search: function(req, res){
-        // let buscado= req.params.searched
-        // let rta= []
-        // for (let i = 0; i < 'faltalista'; i++) {
-        //     if (buscado == 'faltalista'[i].buscado ) {
-        //         rta.push('faltalista'[i])
-        return res.render('search-results',{})
-//     }
-// }
+    search: function(req, res)
+    { 
+        let buscado= req.params.searched
+        let rta=[]
+        for (let i = 0; i < db.lista.length; i++) {
+            if (db.lista[i].nombre.toLowerCase().includes(buscado.toLowerCase()) ) {
+                rta.push(db.lista[i])}}
+        if(rta.length===0){
+            return res.render('search-results',{})
+         }
+         else {
+            return res.render('search-results',{info:rta}), res.render('header', {info:rta})
 
-}
+            // return res.render('header', {info:rta})
+            
+            }
+
     }
+}
 
 
 module.exports = mercadoLibreController;
