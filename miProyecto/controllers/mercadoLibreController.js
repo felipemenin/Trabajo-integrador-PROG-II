@@ -29,12 +29,17 @@ let mercadoLibreController = {
     }},
 
     profile: function(req, res){
-        if(req.params.profileEdit == undefined ){
-            return res.render('profile',{})
-        }
-        else if (req.params.profileEdit == 'edit'){
-            return res.render('profile-edit',{})
-        }
+        usuario= req.params.usuario
+        let rta;
+        for(let i=0; i<users.lista.length; i++){
+            if (usuario.toLowerCase() === users.lista[i].user.toLowerCase()){
+                rta= users.lista[i]
+            } }
+        return res.render('profile', {info:rta})
+        
+    },
+    edit: function(req,res){
+        return res.render('profile-edit',{})
     },
 
     register: function(req, res){

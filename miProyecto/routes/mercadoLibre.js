@@ -10,7 +10,9 @@ router.get('/product/:idProducto', mercadoLibreController.product);
 
 router.get('/productAdd', mercadoLibreController.add)
 
-router.get('/profile/:profileEdit?', mercadoLibreController.profile);
+router.get('/profile/:usuario', mercadoLibreController.profile);
+
+router.get('/profileEdit', mercadoLibreController.edit)
 
 router.get('/register', mercadoLibreController.register);
 

@@ -1,6 +1,6 @@
 let express = require('express')
 
-let usuarios = [
+let usuarios ={lista: [
   {
     id: 1,
     email: "email1@gmail.com",
@@ -41,6 +41,6 @@ let usuarios = [
     dni: 46873423,
     foto_perfil: null,
   },
-];
+]};
 
 module.exports = usuarios
