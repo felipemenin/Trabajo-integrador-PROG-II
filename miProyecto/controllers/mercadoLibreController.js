@@ -35,7 +35,8 @@ let mercadoLibreController = {
             if (usuario.toLowerCase() === users.lista[i].user.toLowerCase()){
                 rta= users.lista[i]
             } }
-        return res.render('profile', {info:rta})
+        return res.render('profile', {info:rta,
+                                      productos: db.lista})
         
     },
     edit: function(req,res){

@@ -8,6 +8,7 @@ let usuarios ={lista: [
     fecha_nacimiento: "2005-06-29 00:00:00",
     dni: 46982347,
     foto_perfil: null,
+    seguidores: 5
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ let usuarios ={lista: [
     fecha_nacimiento: "2005-06-29 00:00:00",
     dni: 46678933,
     foto_perfil: null,
+    seguidores: 7
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ let usuarios ={lista: [
     fecha_nacimiento: "2005-06-29 00:00:00",
     dni: 46786312,
     foto_perfil: null,
+    seguidores: 25
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ let usuarios ={lista: [
     fecha_nacimiento: "2005-06-29 00:00:00",
     dni: 45679768,
     foto_perfil: null,
+    seguidores: 7
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ let usuarios ={lista: [
     fecha_nacimiento: "2005-06-29 00:00:00",
     dni: 46873423,
     foto_perfil: null,
+    seguidores: 0
   },
 ]};
 
