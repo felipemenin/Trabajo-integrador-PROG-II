@@ -6,6 +6,7 @@ let products = {lista:[
     estado: 'n',
     imagen: '/images/products/iphone15.jpeg',
     nombre: "Iphone 15 pro max",
+    vendedor: "Usuario4",
     descripcion:
       "El iPhone 15 Pro Max es el último buque insignia de Apple, con un diseño elegante y una potente tecnología. Con una pantalla OLED de alta calidad y una cámara avanzada, ofrece imágenes y videos impresionantes. Su rendimiento mejorado y la integración de características innovadoras lo convierten en un dispositivo líder en el mercado de teléfonos inteligentes",
     comentarios: [
@@ -34,6 +35,7 @@ let products = {lista:[
     estado: 'c',
     imagen: '/images/products/ipadPro.jpg',
     nombre: "Ipad Pro",
+    vendedor: "Usuario2",
     descripcion:
       "El iPad Pro es una potente tableta diseñada por Apple, que ofrece un rendimiento excepcional y una pantalla impresionante. Con su diseño delgado y elegante, es perfecto para la productividad y el entretenimiento en cualquier lugar. Su compatibilidad con el Apple Pencil y el Magic Keyboard lo convierte en una herramienta versátil para crear y trabajar en movimiento.",
     comentarios: [
@@ -62,6 +64,7 @@ let products = {lista:[
     estado: 'n',
     imagen: '/images/products/appleWatch.jpg',
     nombre: "Apple Watch",
+    vendedor: "Usuario5",
     descripcion:
       "El Apple Watch es un reloj inteligente diseñado por Apple que combina estilo y funcionalidad. Con una variedad de características, como monitoreo de actividad física, notificaciones en tiempo real y opciones de personalización, se adapta a las necesidades de los usuarios modernos. Su integración con otros dispositivos de Apple lo convierte en un compañero ideal para una vida conectada y activa.",
     comentarios: [
@@ -90,6 +93,7 @@ let products = {lista:[
     estado: 'c',
     imagen: '/images/products/airpodsPro.jpeg',
     nombre: "Airpods Pro",
+    vendedor: "Usuario3",
     descripcion:
       "Los AirPods Pro de Apple son auriculares inalámbricos con cancelación activa de ruido, diseñados para brindar una experiencia auditiva inmersiva. Con su ajuste personalizable, son cómodos de usar durante largos períodos de tiempo. Además, ofrecen una calidad de sonido excepcional y una conexión estable con dispositivos Apple. Su estuche de carga inalámbrica los hace convenientes para llevarlos a cualquier parte y mantenerlos siempre listos para usar.",
     comentarios: [
@@ -118,6 +122,7 @@ let products = {lista:[
     estado: 'n',
     imagen: '/images/products/applePencil.jpeg',
     nombre: "Apple Pencil",
+    vendedor: "Usuario1",
     descripcion:
       "El Apple Pencil es un lápiz digital diseñado específicamente para los dispositivos iPad de Apple. Con una punta sensible a la presión, ofrece una experiencia de escritura y dibujo natural y precisa. Su conectividad inalámbrica y la tecnología de carga magnética lo hacen conveniente de usar y mantener cargado. Es una herramienta versátil para tomar notas, crear ilustraciones y realizar tareas creativas en la pantalla del iPad.",
     comentarios: [
@@ -146,6 +151,7 @@ let products = {lista:[
     estado: 'c',
     imagen: '/images/products/img-macbook-pro-2019.jpg',
     nombre: "Macbook Pro",
+    vendedor: "Usuario4",
     descripcion:
       "El MacBook Pro es una poderosa computadora portátil diseñada por Apple para usuarios profesionales y creativos. Con un diseño elegante y delgado, ofrece un rendimiento excepcional gracias a su potente procesador y gráficos avanzados. La pantalla Retina de alta resolución y los altavoces de calidad mejoran la experiencia visual y auditiva. Además, cuenta con características como el Touch Bar y Touch ID para una mayor comodidad y seguridad. Es ideal para tareas exigentes como edición de video, diseño gráfico y programación.",
     comentarios: [
@@ -174,6 +180,7 @@ let products = {lista:[
     estado: 'n',
     imagen: '/images/products/imac',
     nombre: "iMac",
+    vendedor: "Usuario2",
     descripcion:
       "El iMac es una computadora de escritorio todo-en-uno diseñada por Apple que combina potencia y elegancia en un único dispositivo. Con su pantalla Retina de alta resolución y su rendimiento de primera clase, es ideal para tareas creativas y profesionales. Su diseño delgado y minimalista oculta potentes componentes internos que ofrecen un rendimiento excepcional en un espacio reducido. Es una opción popular para aquellos que buscan un equipo potente y con estilo para su espacio de trabajo o entretenimiento en el hogar.",
     comentarios: [
@@ -202,6 +209,7 @@ let products = {lista:[
     estado: 'c',
     imagen: '/images/products/appleTv.jpeg',
     nombre: "Apple TV 4k",
+    vendedor: "Usuario5",
     descripcion:
       "El Apple TV 4K es un dispositivo de transmisión de medios que ofrece una experiencia de entretenimiento de alta calidad en tu televisor. Con su capacidad para reproducir contenido en resolución 4K y HDR, brinda imágenes nítidas y vibrantes con colores más realistas y contrastes mejorados. Además, cuenta con un potente procesador que garantiza una reproducción suave y rápida de videos y juegos, así como acceso a una amplia gama de aplicaciones y servicios de streaming. Su interfaz intuitiva y el control por voz a través de Siri lo hacen fácil de usar y navegar. Es una excelente opción para aquellos que desean disfrutar de contenido multimedia de primera calidad en su hogar",
     comentarios: [
@@ -230,6 +238,7 @@ let products = {lista:[
     estado: 'n',
     imagen: '/images/products/airPodsMax.jpeg',
     nombre: "Airpods Max",
+    vendedor: "Usuario3",
     descripcion:
       "Los AirPods Max son auriculares inalámbricos de diadema de alta gama diseñados por Apple. Ofrecen una experiencia de audio excepcional con calidad de estudio, gracias a sus controladores dinámicos personalizados y la tecnología de cancelación activa de ruido. Su diseño elegante y ergonómico incluye características como almohadillas de espuma viscoelástica y una diadema de malla de acero inoxidable que proporcionan comodidad durante largas sesiones de escucha. Además, cuentan con funcionalidades como el audio espacial y el seguimiento de la cabeza, lo que ofrece una experiencia de sonido envolvente y personalizada.",
     comentarios: [
@@ -258,6 +267,7 @@ let products = {lista:[
     estado: 'c',
     imagen: '/images/products/macPro.large',
     nombre: "Mac Pro",
+    vendedor: "Usuario1",
     descripcion:
       "El Apple Mac Pro es una estación de trabajo de alto rendimiento diseñada para usuarios profesionales que requieren capacidades de computación intensivas. Con su diseño modular, permite a los usuarios personalizar y expandir el hardware según sus necesidades específicas, lo que incluye opciones de CPU, GPU, memoria y almacenamiento. Equipado con potentes procesadores Intel Xeon y gráficos AMD, ofrece un rendimiento excepcional para tareas como edición de video, renderizado 3D, desarrollo de software y diseño gráfico. Además, cuenta con un sistema de refrigeración avanzado que mantiene los componentes funcionando de manera óptima incluso durante las cargas de trabajo más exigentes. Es la elección ideal para profesionales creativos y técnicos que buscan la máxima potencia y flexibilidad en su trabajo.",
     comentarios: [
