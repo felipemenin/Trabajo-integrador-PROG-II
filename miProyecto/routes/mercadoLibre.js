@@ -14,7 +14,7 @@ router.get('/profile/:profileEdit?', mercadoLibreController.profile);
 
 router.get('/register', mercadoLibreController.register);
 
-router.get('/search/:searched', mercadoLibreController.search);
+router.get('/search', mercadoLibreController.search);
 
 
 

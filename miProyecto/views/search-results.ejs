@@ -15,7 +15,11 @@
 			<div class="col-12">
 				<h2 class="products-title">Resultados de búsqueda</h2>
 			</div>
-			<% for(let i=0; i < info.length; i++){ %>
+			<%  if(info.length===0){%>
+			<h2 class="produc-no-disp">El producto no esta disponible</h2>
+			<%} 
+			else {
+			 for(let i=0; i < info.length; i++){ %>
 					<div class="col-12 col-sm-6 col-lg-3">
 						<section class="product-box">
 							<a href="http://localhost:3000/mercadoLibre/product/<%- info[i].nombre%>">
@@ -31,7 +35,7 @@
 							</a>
 						</section>
 					</div>
-			<%  }%>
+			<%  }}%>
 		</div>
 	</div>
 

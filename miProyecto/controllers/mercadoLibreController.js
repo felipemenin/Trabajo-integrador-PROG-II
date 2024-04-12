@@ -47,23 +47,15 @@ let mercadoLibreController = {
     ,
     search: function(req, res)
     { 
-        let buscado= req.params.searched
+        let buscado= req.query.search
         let rta=[]
         for (let i = 0; i < db.lista.length; i++) {
             if (db.lista[i].nombre.toLowerCase().includes(buscado.toLowerCase()) ) {
                 rta.push(db.lista[i])}}
-        if(rta.length===0){
-            return res.render('search-results',{})
-         }
-         else {
-            return res.render('search-results',{info:rta}), res.render('header', {info:rta})
-
-            // return res.render('header', {info:rta})
-            
+        return res.render('search-results',{info:rta})
             }
-
     }
-}
+
 
 
 module.exports = mercadoLibreController;
