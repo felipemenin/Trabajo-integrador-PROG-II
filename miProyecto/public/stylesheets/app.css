@@ -68,12 +68,13 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
-  background-color: var(--yellow);
+  background-color: black;
 }
 
 .main-header_home-link,
 .main-header_credit-link {
   display: block;
+  color: white;
 }
 
 .main-header_credit-link {
@@ -86,6 +87,11 @@ hr {
   position: relative;
   display: flex;
   align-items: center;
+}
+
+.bear{
+  height: 75%;
+  width: 75%;
 }
 
 .search-form_input {
@@ -130,6 +136,7 @@ hr {
 .left-navbar,
 .right-navbar {
   font-size: 1.5em;
+  color: white;
 }
 
 .logout{
@@ -137,6 +144,7 @@ hr {
   border: 0px;
   cursor: pointer;
   font-size: 1em;
+  color: white;
 }
 
 .logout:hover{
@@ -259,7 +267,7 @@ hr {
 
 /*====== Footer ======*/
 .main-footer {
-  background-color: #ffffff;
+  background-color: black;
   padding: 20px 0;
   margin-top: 80px;
 }
@@ -274,13 +282,13 @@ hr {
 }
 
 .footer-data h2 {
-  color: var(--gray);
+  color: whitesmoke;
   font-size: 2.4em;
   font-weight: 400;
 }
 
 .footer-data p {
-  color: var(--gray);
+  color: whitesmoke;
   font-size: 1.5em;
   font-weight: 300;
 }
@@ -434,6 +442,18 @@ hr {
   display: block;
   width: 100%;
   height: 45px;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+  border-radius: 8px;
+  border: none;
+  border: solid 1px var(--gray);
+  padding: 0 15px;
+}
+
+.form-input-recordame{
+  display: block;
+  width: 15%;
+  height: 30px;
   margin-bottom: 15px;
   font-size: 1.5em;
   border-radius: 8px;
