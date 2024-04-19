@@ -1,6 +1,5 @@
 /*====== Fonts ======*/
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Ubuntu&display=swap');
 /*====== Variables ======*/
 :root {
   --yellow: #303b7a;
@@ -9,7 +8,9 @@
   --gray: #666666;
   --light-gray: #ebebeb;
   --green: #39b54a;
-  --base-font-family: 'Roboto', sans-serif
+  --base-font-family: 'Lato', sans-serif;
+  --other-font-family: "Merriweather", sans-serif;
+  --another-font-family: "Ubuntu", sans-serif;
 }
 
 
@@ -130,6 +131,7 @@ hr {
 .main-navbar {
   margin-top: 20px;
   display: none;
+  font-family: var(--another-font-family);
 }
 
 .left-navbar,
@@ -176,6 +178,7 @@ hr {
 }
 
 .products-title {
+  font-family: var(--other-font-family);
   font-size: 2.4em;
   font-weight: 400;
   color: var(--gray);
@@ -323,6 +326,7 @@ hr {
 }
 
 .product-detail-title {
+  font-family: var(--other-font-family);
   font-weight: 400;
   font-size: 2.8em;
 }
@@ -483,6 +487,7 @@ textarea.form-input {
 }
 
 .main-title{
+  font-family: var(--other-font-family);
   font-size: 25px;
   margin-bottom: 10px;
 }
