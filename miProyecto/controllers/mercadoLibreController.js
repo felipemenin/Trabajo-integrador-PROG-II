@@ -1,7 +1,7 @@
 let express = require('express')
-let db= require('../db/products')
+let products= require('../db/products')
 let users= require('../db/usuarios')
-
+const db = require('../database/models')
 
 
 let mercadoLibreController = {
