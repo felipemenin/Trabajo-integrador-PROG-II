@@ -22,17 +22,21 @@ module.exports = function(sequelize, dataTypes){
         foto_de_perfil: {
             type: dataTypes.STRING
         },
-        createdAt: {
+        created_at: {
             type: dataTypes.DATE,
             allowNull: true
         },
-        updatedAt: {
+        updated_at: {
             type: dataTypes.DATE,
             allowNull: true
         },
-        deletedAt: {
+        deleted_at: {
             type: dataTypes.DATE,
             allowNull: true
+        },
+        user: {
+            type: dataTypes.STRING(20),
+            allowNull: false
         }
     }
     let config = {
@@ -45,11 +49,11 @@ module.exports = function(sequelize, dataTypes){
     User.associate = function(models){
         User.hasMany(models.Comentario, {
             as: "coment-user",
-            foreignKey: "user_id"
+            foreignKey: "usuario_id"
         })
         
         User.hasMany(models.Product, {
-            as: "User-product",
+            as: "user-product",
             foreignKey: "usuario_id"
         });
     }

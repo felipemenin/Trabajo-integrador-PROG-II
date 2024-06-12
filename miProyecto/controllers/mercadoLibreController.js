@@ -1,8 +1,10 @@
 let express = require('express')
 let products= require('../db/products')
 let users= require('../db/usuarios')
-const db = require('../database/models')
-
+const db = require('../db/products')
+const dbPosta = require('../database/models')
+let bcrypt = require('bcryptjs')
+const { validationResult } = require("express-validator")
 
 let mercadoLibreController = {
     index: function(req, res){
@@ -50,15 +52,44 @@ let mercadoLibreController = {
         return res.render('product-add',{})
     }
     ,
-    search: function(req, res)
-    { 
+    search: function(req, res) { 
         let buscado= req.query.search
         let rta=[]
         for (let i = 0; i < db.lista.length; i++) {
             if (db.lista[i].nombre.toLowerCase().includes(buscado.toLowerCase()) ) {
                 rta.push(db.lista[i])}}
         return res.render('search-results',{info:rta})
-            }
+            },
+    createProfile: function(req, res){
+        const registerValidator = validationResult(req)
+        if(registerValidator.isEmpty()){
+            
+        let datos = req.body;
+        let encriptada = bcrypt.hashSync(datos.pass, 12)
+
+        let usuarioNuevo = {
+            email: datos.email,
+            clave: encriptada,
+            fecha: datos.fecha_nacimiento,
+            dni: datos.dni,
+            foto_de_perfil: datos.foto_perfil,
+            user: datos.user
+        }
+
+        dbPosta.User.create(usuarioNuevo)
+            .then(function(data){
+                res.redirect('login')
+            })
+            .catch(function(error){
+                console.log(error)
+            })
+        }
+        else{
+            console.log(registerValidator)
+            return res.render("register", {errors: registerValidator.mapped(), oldData: req.body})
+        }
+        }
+
     }
 
 

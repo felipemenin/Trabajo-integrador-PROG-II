@@ -32,6 +32,10 @@ body {
   background-color: var(--light-gray);
 }
 
+.error-message{
+  color: red;
+}
+
 ul,
 ol {
   list-style: none;

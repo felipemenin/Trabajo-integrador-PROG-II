@@ -15,15 +15,15 @@ module.exports = function (sequelize, dataTypes ) {
         descripcion_producto: {
             type: dataTypes.STRING
         },
-        createdAt: {
+        created_at: {
             type: dataTypes.DATE,
             allowNull: true
         },
-        updatedAt: {
+        updated_at: {
             type: dataTypes.DATE,
             allowNull: true
         },
-        deletedAt: {
+        deleted_at: {
             type: dataTypes.DATE,
             allowNull: true
         },
@@ -46,7 +46,7 @@ module.exports = function (sequelize, dataTypes ) {
         })
 
         Product.belongsTo(models.User, {
-            as: "User-product",
+            as: "user-product",
             foreignKey: "usuario_id"
         });
     }
