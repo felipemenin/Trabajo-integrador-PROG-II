@@ -16,14 +16,20 @@
 				<h2 class="products-title">Ingresar</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form action="http://localhost:3000/bears" method="get">
+			<form action="http://localhost:3000/bears/loginprofile" method="POST">
 				<div>
-					<label class="form-label" for="email">Usuario:</label>
-					<input class="form-input" id="email" type="email" name="email">
+					<label class="form-label" for="email">Email:</label>
+					<input class="form-input" id="email" name="email" value="<%= locals.oldData && oldData.email ? oldData.email : null %>">
+					<% if (locals.errors && errors.email) { %>
+						<div class="error-message"> <%= errors.email.msg %></div>
+					<% } %>   
 				</div>
 				<div>
 					<label class="form-label" for="password">Password:</label>
-					<input class="form-input" id="password" type="password" name="pass" value="">
+					<input class="form-input" id="password" type="password" name="password" value="">
+					<% if (locals.errors && errors.password) { %>
+						<div class="error-message"><%= errors.password.msg %></div>
+					   <% } %>
 				</div>
 				<div>
 					<label class="form-label" for="recordame">Recordame</label>

@@ -103,6 +103,27 @@ let mercadoLibreController = {
       });
     }
   },
-};
+  loginProfile: function(req, res){
+    const loginValidator = validationResult(req)
+    if(!loginValidator.isEmpty()){
+      console.log(loginValidator);
+      return res.render("login", { 
+          errors: loginValidator.mapped(),
+          oldData: req.body
+      })
+  } 
+  else {
+    dbPosta.User.findOne({
+      where: [{email: req.body.email}]
+  })
+  .then(function(data){
+    console.log(data)
+    res.redirect("/bears")
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  }}
+}
 
 module.exports = mercadoLibreController;
