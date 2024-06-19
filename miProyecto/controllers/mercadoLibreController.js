@@ -111,19 +111,21 @@ let mercadoLibreController = {
           errors: loginValidator.mapped(),
           oldData: req.body
       })
-  } 
-  else {
+  } else {
     dbPosta.User.findOne({
       where: [{email: req.body.email}]
   })
-  .then(function(data){
-    console.log(data)
-    res.redirect("/bears")
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  }}
+    .then( function ( user ) {
+      req.session.user = user;     
+      if(req.body.recordarme != undefined){
+        res.cookie('userId', user.id, { maxAge: 1000 * 60 * 5})
+    }
+    return res.redirect('/bears');            
+})
+.catch( function(e) {
+    console.log(e)
+})
+}}
 }
 
 module.exports = mercadoLibreController;
