@@ -17,5 +17,5 @@ router.get('/search', mercadoLibreController.search);
 
 router.post('/createprofile', registerValidator, mercadoLibreController.createProfile);
 router.post("/loginprofile", loginValidations, mercadoLibreController.loginProfile)
-
+router.post('/logout', mercadoLibreController.logout);
 module.exports = router;

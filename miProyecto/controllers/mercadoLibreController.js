@@ -5,6 +5,7 @@ const db = require("../db/products");
 const dbPosta = require("../database/models");
 let bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
+const { Op, Association } = require("sequelize");
 
 let mercadoLibreController = {
   index: function (req, res) {
@@ -53,13 +54,27 @@ let mercadoLibreController = {
   },
   search: function (req, res) {
     let buscado = req.query.search;
-    let rta = [];
-    for (let i = 0; i < db.lista.length; i++) {
-      if (db.lista[i].nombre.toLowerCase().includes(buscado.toLowerCase())) {
-        rta.push(db.lista[i]);
-      }
-    }
-    return res.render("search-results", { info: rta });
+
+    dbPosta.Product.findAll({
+      where: [
+        { nombre_producto: { [Op.like]: "%" + buscado + "%" } },
+      ],
+      where: [
+        { descripcion_producto: { [Op.like]: "%" + buscado + "%" } }
+      ],
+      include: [ { association: "coment_product"}, 
+              {association: "user_product"}
+            ],
+      order: [["created_at", "DESC"]]
+    })
+      .then((data) => {
+        console.log(data.user_product)
+        return res.render("search-results", { productos: data });
+      })
+
+      .catch(function (e) {
+        console.log(e);
+      });
   },
   createProfile: function (req, res) {
     const registerValidator = validationResult(req);
@@ -67,7 +82,7 @@ let mercadoLibreController = {
       let datos = req.body;
 
       let encriptada = bcrypt.hashSync(datos.pass, 12);
-      
+
       if (datos.fecha_nacimiento == "") {
         datos.fecha_nacimiento = null;
       }
@@ -103,29 +118,37 @@ let mercadoLibreController = {
       });
     }
   },
-  loginProfile: function(req, res){
-    const loginValidator = validationResult(req)
-    if(!loginValidator.isEmpty()){
+  loginProfile: function (req, res) {
+    const loginValidator = validationResult(req);
+    if (!loginValidator.isEmpty()) {
       console.log(loginValidator);
-      return res.render("login", { 
-          errors: loginValidator.mapped(),
-          oldData: req.body
+      return res.render("login", {
+        errors: loginValidator.mapped(),
+        oldData: req.body,
+      });
+    } else {
+      dbPosta.User.findOne({
+        where: [{ email: req.body.email }],
       })
-  } else {
-    dbPosta.User.findOne({
-      where: [{email: req.body.email}]
-  })
-    .then( function ( user ) {
-      req.session.user = user;     
-      if(req.body.recordarme != undefined){
-        res.cookie('userId', user.id, { maxAge: 1000 * 60 * 5})
+        .then(function (user) {
+          req.session.user = user;
+          if (req.body.recordarme != undefined) {
+            res.cookie("userId", user.id, { maxAge: 1000 * 60 * 5 });
+          }
+          return res.redirect("/bears");
+        })
+        .catch(function (e) {
+          console.log(e);
+        });
     }
-    return res.redirect('/bears');            
-})
-.catch( function(e) {
-    console.log(e)
-})
-}}
-}
+  },
+  logout: function (req, res) {
+    req.session.destroy();
+
+    res.clearCookie("userId");
+
+    return res.redirect("/bears");
+  },
+};
 
 module.exports = mercadoLibreController;

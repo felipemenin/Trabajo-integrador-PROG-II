@@ -4,7 +4,7 @@ let usuarios ={lista: [
   {
     id: 1,
     email: "email1@gmail.com",
-    user: "usuario1",
+    user: "",
     fecha_nacimiento: "2005-06-29 00:00:00",
     dni: 46982347,
     foto_perfil: "/images/users/b8566174a0dfa98437920797ceb02f7a.jpg",
