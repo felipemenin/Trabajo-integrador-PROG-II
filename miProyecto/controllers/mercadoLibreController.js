@@ -44,14 +44,22 @@ let mercadoLibreController = {
   },
 
   profile: function (req, res) {
-    usuario = req.params.usuario;
-    let rta;
-    for (let i = 0; i < users.lista.length; i++) {
-      if (usuario.toLowerCase() === users.lista[i].user.toLowerCase()) {
-        rta = users.lista[i];
-      }
-    }
-    return res.render("profile", { info: rta, productos: db.lista });
+    let id = req.params.id
+    dbPosta.User.findByPk(id, {
+      include: [
+        { association: 'user_product',
+          include: [
+            { association: "coment_product" }
+          ]
+        }
+      ]
+    })
+      .then(function (data) {        
+        res.render('profile', { usuarios: data })
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
   },
   edit: function (req, res) {
     return res.render("profile-edit", {});
