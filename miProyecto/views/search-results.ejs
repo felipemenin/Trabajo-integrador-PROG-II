@@ -35,7 +35,7 @@
 								
 									<p><%=productos[i].descripcion_producto%></p>
 									<p>Comentarios: <%=productos[i].coment_product.length%> </p>
-									<a>Cargado por: <%=productos[i].user_product.user%> <a>
+									<a href="http://localhost:3000/bears/profile/<%= productos[i].user_product.user%>"> Cargado por: <%=productos[i].user_product.user%></a>
 
 								</article>
 							</a>

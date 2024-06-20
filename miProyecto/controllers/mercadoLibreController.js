@@ -9,7 +9,19 @@ const { Op, Association } = require("sequelize");
 
 let mercadoLibreController = {
   index: function (req, res) {
-    return res.render("home", { info: db });
+    dbPosta.Product.findAll({
+      include: [ { association: "coment_product"}, 
+        {association: "user_product"}
+      ],
+      order: [["created_at", "DESC"]]
+    })
+      .then(function(data){
+        console.log(data)
+        return res.render("home", { info: data })
+      })
+      .catch(function(error){
+        console.log(error)
+      });
   },
 
   login: function (req, res) {
@@ -68,7 +80,6 @@ let mercadoLibreController = {
       order: [["created_at", "DESC"]]
     })
       .then((data) => {
-        console.log(data.user_product)
         return res.render("search-results", { productos: data });
       })
 

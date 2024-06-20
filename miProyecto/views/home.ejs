@@ -23,56 +23,26 @@
 				<h2 class="products-title">Novedades</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<% for(let i=0; i < info.lista.length; i++){ %>
-				<%if(info.lista[i].estado === 'n'){ %>
+			<% for(let i=0; i < 5; i++){ %>
 					<div class="col-12 col-sm-6 col-lg-3">
 						<section class="product-box">
-							<a href="http://localhost:3000/bears/product/<%- info.lista[i].nombre%>">
+							<a href="http://localhost:3000/bears/product/<%- info[i].nombre_producto%>">
 								<figure class="product-box_image">
-									<img src=<%- info.lista[i].imagen%> alt="<%- info.lista[i].nombre%>">
+									<img src='/images/products/<%- info[i].foto_producto%>' alt="<%- info[i].nombre_producto%>">
 								</figure>
 								<article class="product-box_data">
-									<h2><%-info.lista[i].nombre %></h2>
+									<h2><%-info[i].nombre_producto %></h2>
 								
-									<p><%-info.lista[i].descripcion%></p>
-									<p>Comentarios: <%- info.lista[i].comentarios.length %></p>
+									<p><%-info[i].descripcion_producto%></p>
+									<p>Comentarios: <%- info[i].coment_product.length %></p>
+									<a href="http://localhost:3000/bears/profile/<%= info[i].user_product.user%>"> Cargado por: <%=info[i].user_product.user%></a>
 								</article>
 							</a>
 						</section>
 					</div>
-			<% } }%>
+			<%  }%>
 		</div>
 	</div>
-	<!-- /Novedades -->
-	<!-- Más comentados -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Más comentados</h2>
-			</div>
-			<!-- Show the "ultimos" products -->
-			<% for(let i=0; i < info.lista.length; i++){ %>
-				<%if(info.lista[i].estado === 'c'){ %>
-					<div class="col-12 col-sm-6 col-lg-3">
-						<section class="product-box">
-							<a href="http://localhost:3000/bears/product/<%- info.lista[i].nombre%>">
-								<figure class="product-box_image">
-									<img src=<%- info.lista[i].imagen%> alt="<%- info.lista[i].nombre%>">
-								</figure>
-								<article class="product-box_data">
-									<h2><%-info.lista[i].nombre %></h2>
-								
-									<p><%-info.lista[i].descripcion%></p>
-									<p>Comentarios: <%- info.lista[i].comentarios.length %></p>
-								</article>
-							</a>
-						</section>
-					</div>
-			<% } }%>
-		</div>
-	</div>
-	<!-- /Más comentados -->
-
 
 	<!-- footer -->
 	<%- include('./partials/footer') %>	
