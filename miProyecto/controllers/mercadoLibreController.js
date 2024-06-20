@@ -10,17 +10,18 @@ const { Op, Association } = require("sequelize");
 let mercadoLibreController = {
   index: function (req, res) {
     dbPosta.Product.findAll({
-      include: [ { association: "coment_product"}, 
-        {association: "user_product"}
+      include: [
+        { association: "coment_product" },
+        { association: "user_product" },
       ],
-      order: [["created_at", "DESC"]]
+      order: [["created_at", "DESC"]],
     })
-      .then(function(data){
-        console.log(data)
-        return res.render("home", { info: data })
+      .then(function (data) {
+        // console.log(data);
+        return res.render("home", { info: data });
       })
-      .catch(function(error){
-        console.log(error)
+      .catch(function (error) {
+        console.log(error);
       });
   },
 
@@ -44,22 +45,21 @@ let mercadoLibreController = {
   },
 
   profile: function (req, res) {
-    let id = req.params.id
+    let id = req.params.id;
     dbPosta.User.findByPk(id, {
       include: [
-        { association: 'user_product',
-          include: [
-            { association: "coment_product" }
-          ]
-        }
-      ]
+        {
+          association: "user_product",
+          include: [{ association: "coment_product" }],
+        },
+      ],
     })
-      .then(function (data) {        
-        res.render('profile', { usuarios: data })
+      .then(function (data) {
+        res.render("profile", { usuarios: data });
       })
       .catch(function (error) {
         console.log(error);
-      })
+      });
   },
   edit: function (req, res) {
     return res.render("profile-edit", {});
@@ -70,22 +70,50 @@ let mercadoLibreController = {
   },
 
   add: function (req, res) {
-    return res.render("product-add", {});
+    if (req.session.user == undefined) {
+      return res.redirect("/bears/register");
+    } else {
+      return res.render("product-add");
+    }
+  },
+  store: function (req, res) {
+    const addProductValidations = validationResult(req);
+    if (addProductValidations.errors.length > 0) {
+      return res.render("product-add", {
+        errors: addProductValidations.mapped(),
+        oldData: req.body,
+      });
+    }
+    let id= req.session.user.id
+    data = req.body;
+
+    let producto = {
+      foto_producto: data.imagen,
+      nombre_producto: data.nombre,
+      descripcion_producto: data.descripcion,
+      usuario_id: id
+    };
+    dbPosta.Product.create(producto)
+    .then((productoCreado) => {
+      return res.redirect('/bears')
+    })
+    .catch(error =>{
+      console.log(error)
+    })
+
+
   },
   search: function (req, res) {
     let buscado = req.query.search;
 
     dbPosta.Product.findAll({
-      where: [
-        { nombre_producto: { [Op.like]: "%" + buscado + "%" } },
+      where: [{ nombre_producto: { [Op.like]: "%" + buscado + "%" } }],
+      where: [{ descripcion_producto: { [Op.like]: "%" + buscado + "%" } }],
+      include: [
+        { association: "coment_product" },
+        { association: "user_product" },
       ],
-      where: [
-        { descripcion_producto: { [Op.like]: "%" + buscado + "%" } }
-      ],
-      include: [ { association: "coment_product"}, 
-              {association: "user_product"}
-            ],
-      order: [["created_at", "DESC"]]
+      order: [["created_at", "DESC"]],
     })
       .then((data) => {
         return res.render("search-results", { productos: data });
@@ -112,7 +140,7 @@ let mercadoLibreController = {
         datos.foto_perfil = null;
       }
 
-      console.log("aca estan los datos", datos);
+      // console.log("aca estan los datos", datos);
       let usuarioNuevo = {
         email: datos.email,
         clave: encriptada,
@@ -130,7 +158,7 @@ let mercadoLibreController = {
           console.log(error);
         });
     } else {
-      console.log(registerValidator);
+      // console.log(registerValidator);
       return res.render("register", {
         errors: registerValidator.mapped(),
         oldData: req.body,
@@ -140,7 +168,7 @@ let mercadoLibreController = {
   loginProfile: function (req, res) {
     const loginValidator = validationResult(req);
     if (!loginValidator.isEmpty()) {
-      console.log(loginValidator);
+      // console.log(loginValidator);
       return res.render("login", {
         errors: loginValidator.mapped(),
         oldData: req.body,

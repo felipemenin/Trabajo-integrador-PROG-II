@@ -3,6 +3,7 @@ let router = express.Router();
 let mercadoLibreController = require('../controllers/mercadoLibreController');
 const registerValidator = require('../middlewares/register-validator');
 const loginValidations = require("../middlewares/login-validator");
+const addProductValidator = require('../middlewares/add-product-validator');
 
 router.get('/', mercadoLibreController.index);
 router.get('/login', mercadoLibreController.login);
@@ -18,5 +19,6 @@ router.get('/search', mercadoLibreController.search);
 router.post('/createprofile', registerValidator, mercadoLibreController.createProfile);
 router.post("/loginprofile", loginValidations, mercadoLibreController.loginProfile)
 router.post('/logout', mercadoLibreController.logout);
+router.post("/addProduct", addProductValidator,mercadoLibreController.store)
 
 module.exports = router;
