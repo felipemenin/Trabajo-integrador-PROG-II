@@ -97,6 +97,7 @@ let mercadoLibreController = {
         oldData: req.body,
         usuario: req.session.user
       });
+    
     }
     const id = req.session.user.id;
     const perfil = req.body;
