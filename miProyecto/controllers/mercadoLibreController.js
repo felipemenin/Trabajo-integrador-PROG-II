@@ -24,38 +24,56 @@ let mercadoLibreController = {
         console.log(error);
       });
   },
-
   login: function (req, res) {
     return res.render("login", {});
   },
-
   product: function (req, res) {
     let id = req.params.idProducto;
-    let rta;
-    for (let i = 0; i < db.lista.length; i++) {
-      if (id.toLowerCase() === db.lista[i].nombre.toLowerCase()) {
-        rta = db.lista[i];
-      }
-    }
-    if (rta.length === 0) {
-      return res.send("El producto no esta disponible");
-    } else {
-      return res.render("product", { info: rta });
-    }
+    dbPosta.Product.findByPk(id, {
+      include: [ {association: "coment_product" },
+      { association: "user_product"}
+    ]
+    })
+      .then(data => {
+        console.log(data)
+        return res.render("product", {product: data, user: req.session.user})
+      })
+      .catch(error => {
+        console.log(error);
+    })
+    // let rta;
+    // for (let i = 0; i < db.lista.length; i++) {
+    //   if (id.toLowerCase() === db.lista[i].nombre.toLowerCase()) {
+    //     rta = db.lista[i];
+    //   }
+    // }
+    // if (rta.length === 0) {
+    //   return res.send("El producto no esta disponible");
+    // } else {
+    //   return res.render("product", { info: rta });
+    // }
   },
-
   profile: function (req, res) {
     let id = req.params.id;
     dbPosta.User.findByPk(id, {
       include: [
         {
-          association: "user_product",
-          include: [{ association: "coment_product" }],
-        },
+        association: "user_product",
+        association: "coment_user"
+        }
       ],
     })
       .then(function (data) {
-        res.render("profile", { usuarios: data });
+        dbPosta.Product.findAll({
+          where: {usuario_id: 1},
+          include: [{ association: "coment_product"}]
+        })
+        .then(function(products){
+          return res.render("profile", {info: data})
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -119,11 +137,9 @@ let mercadoLibreController = {
         console.log(err);
       });
   },
-
   register: function (req, res) {
     return res.render("register", {});
   },
-
   add: function (req, res) {
     if (req.session.user == undefined) {
       return res.redirect("/bears/register");
@@ -249,6 +265,28 @@ let mercadoLibreController = {
 
     return res.redirect("/bears");
   },
+  comment: function(req, res){
+    const resultValidation = validationResult(req);
+    if (req.session.user != undefined){
+      if( resultValidation.isEmpty()){
+        let id = req.params.id;
+        dbPosta.Comentario.create({
+          comentario: req.params.text,
+          producto_id: req.params.idProducto,
+          usuario_id: req.session.user.id
+        })
+        .then(function(data){
+          res.redirect(`/bears/product/${id}`)
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+      } else {
+        let id = req.params.id
+
+      }
+    }
+  }
 };
 
 module.exports = mercadoLibreController;
