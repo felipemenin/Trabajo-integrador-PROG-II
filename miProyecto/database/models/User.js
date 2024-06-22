@@ -14,10 +14,12 @@ module.exports = function(sequelize, dataTypes){
         },
         fecha: {
             type: dataTypes.DATE,
+            allowNull: true
 
         },
         dni: {
-            type : dataTypes.INTEGER
+            type : dataTypes.INTEGER,
+            allowNull: true
         },
         foto_de_perfil: {
             type: dataTypes.STRING

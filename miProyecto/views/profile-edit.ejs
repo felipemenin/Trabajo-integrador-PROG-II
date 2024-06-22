@@ -16,33 +16,42 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			
-			<form action="http://localhost:3000/bears" method="get">
+			<form action="http://localhost:3000/bears/editProfile" method="POST">
 				<div>
 					<label class="form-label" for="email">Email:</label>
-					<input class="form-input" id="email" type="email" name="email">
+					<input class="form-input" id="email" type="email" name="email" value="<%= usuario.email %>">
+					<% if (locals.errors && errors.email) { %>
+						<div class="error-message"> <%= errors.email.msg %></div>
+					<% } %>  
 				</div>
 				<div>
 					<label class="form-label" for="user">User:</label>
-					<input class="form-input" id="user" type="text" name="user" value="">
+					<input class="form-input" id="user" type="text" name="user" value="<%= usuario.user %>">
+					<% if (locals.errors && errors.user) { %>
+						<div class="error-message"> <%= errors.user.msg %></div>
+					<% } %>  
 				</div>
 				<div>
 					<label class="form-label" for="password">Password:</label>
 					<input class="form-input" id="password" type="password" name="pass" value="">
+					<% if (locals.errors && errors.pass) { %>
+						<div class="error-message"> <%= errors.pass.msg %></div>
+					<% } %>  
 				</div>
 				<div>
 					<label class="form-label" for="fecha_nacimiento">Fecha de nacimiento</label>
-					<input class="form-input" type="date" name="fecha_nacimiento" id="fecha_nacimiento">
+					<input class="form-input" type="date" name="fecha_nacimiento" id="fecha_nacimiento" value="<%= usuario.fecha %>">
 				</div>
 				<div>
 					<label class="form-label" for="dni">DNI</label>
-					<input class="form-input" type="number" name="dni" id="dni">
+					<input class="form-input" type="number" name="dni" id="dni" value="<%= usuario.dni %>">
 				</div>
 				<div>
 					<label class="form-label" for="foto_perfil">Foto de perfil</label>
-					<input class="form-input" type="text" name="foto_perfil" id="foto_perfil">
+					<input class="form-input" type="text" name="foto_perfil" id="foto_perfil" value="<%= usuario.foto_de_perfil %>">
 				</div>
 
-				<button class="form-input" type="submit">Registrarse</button>
+				<button class="form-input" type="submit">Editar</button>
 			</form>
 		</div>
 	</div>

@@ -62,7 +62,62 @@ let mercadoLibreController = {
       });
   },
   edit: function (req, res) {
-    return res.render("profile-edit", {});
+    let id = req.session.user.id;
+    dbPosta.User.findByPk(id)
+      .then((data) => {
+        res.render("profile-edit", { usuario: data });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
+  edit_profile: function (req, res) {
+    const editProductValidations = validationResult(req);
+    if (editProductValidations.errors.length > 0) {
+      return res.render("profile-edit", {
+        errors: editProductValidations.mapped(),
+        oldData: req.body,
+        usuario: req.session.user
+      });
+    }
+    const id = req.session.user.id;
+    const perfil = req.body;
+    if (perfil.fecha_nacimiento == "") {
+      perfil.fecha_nacimiento = null;
+    }
+    if (perfil.dni == "") {
+      perfil.dni = null;
+    }
+    if (perfil.foto_perfil == "") {
+      perfil.foto_perfil = null;
+    }
+    
+    perfilEditado = {
+      email: perfil.email,
+      clave: perfil.pass,
+      fecha: perfil.fecha_nacimiento,
+      dni: perfil.dni,
+      foto_de_perfil: perfil.foto_perfil,
+      user: perfil.user,
+    };
+
+    if (perfilEditado.clave == ""){
+      perfilEditado.clave = req.session.user.clave
+    }
+    else{
+      perfilEditado.clave = bcrypt.hashSync(perfilEditado.clave, 12)
+    }
+    dbPosta.User.update(perfilEditado, {
+      where: {
+        id: id,
+      },
+    })
+      .then(function (result) {
+        return res.redirect(`/bears/profile`);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   },
 
   register: function (req, res) {
@@ -84,24 +139,22 @@ let mercadoLibreController = {
         oldData: req.body,
       });
     }
-    let id= req.session.user.id
+    let id = req.session.user.id;
     data = req.body;
 
     let producto = {
       foto_producto: data.imagen,
       nombre_producto: data.nombre,
       descripcion_producto: data.descripcion,
-      usuario_id: id
+      usuario_id: id,
     };
     dbPosta.Product.create(producto)
-    .then((productoCreado) => {
-      return res.redirect('/bears')
-    })
-    .catch(error =>{
-      console.log(error)
-    })
-
-
+      .then((productoCreado) => {
+        return res.redirect("/bears");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   search: function (req, res) {
     let buscado = req.query.search;
