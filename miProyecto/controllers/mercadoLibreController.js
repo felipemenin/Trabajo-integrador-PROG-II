@@ -54,26 +54,17 @@ let mercadoLibreController = {
     // }
   },
   profile: function (req, res) {
-    let id = req.params.id;
+    let id = req.params.idUsuario;
     dbPosta.User.findByPk(id, {
       include: [
         {
-        association: "user_product",
-        association: "coment_user"
-        }
-      ],
+        association: "user_product"
+        },
+        { association: "coment_user" }
+      ]
     })
       .then(function (data) {
-        dbPosta.Product.findAll({
-          where: {usuario_id: 1},
-          include: [{ association: "coment_product"}]
-        })
-        .then(function(products){
           return res.render("profile", {info: data})
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
       })
       .catch(function (error) {
         console.log(error);
@@ -97,7 +88,6 @@ let mercadoLibreController = {
         oldData: req.body,
         usuario: req.session.user
       });
-    
     }
     const id = req.session.user.id;
     const perfil = req.body;
