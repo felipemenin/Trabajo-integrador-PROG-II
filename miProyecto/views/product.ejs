@@ -19,7 +19,12 @@
 			</h2> 
 			<% if (locals.user && locals.user.id === product.usuario_id) { %>
 			<p class="product-detail-description">
+				<button class="buy-after-button">
 				<a href="http://localhost:3000/bears/productAdd">Editar</a>
+				</button>
+				<button class="buy-after-button">
+				<a href="http://localhost:3000/bears/deleteProduct/<%= product.id %>"> Borrar</a>
+				</button>
 			</p>
 			<% } %>
 		</div>
@@ -33,13 +38,18 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for(let i=0; i < product.coment_product.length; i++){ %>
+						<% for(let i=0; i < coment.length; i++){ %>
 							<article>
 								<img src="/images/users/default-user.webp" alt="">
 								<div class="data">
 									<p class="user">
-									<strong> <a href="http://localhost:3000/bears/profile/<%- product.coment_user[i].id%>"><%- info.comentarios[i].nombre_usuario%></a> </strong>
-									<%= info.comentarios[i].comentario%>
+									<strong>
+										<a href="http://localhost:3000/bears/profile/<%- coment[i].coment_user.id%>">
+											<%- coment[i].coment_user.email%>
+										</a> 
+									</strong>
+									<br>
+									<%= coment[i].comentario%>
 								</p>
 								</div>
 							</article>

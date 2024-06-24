@@ -15,6 +15,7 @@ router.get('/profile/:idUsuario', mercadoLibreController.profile);
 router.get('/profileEdit', mercadoLibreController.edit)
 router.get('/register', mercadoLibreController.register);
 router.get('/search', mercadoLibreController.search);
+router.get("/deleteProduct/:id", mercadoLibreController.deleteProduct);
 
 //aca van los post
 

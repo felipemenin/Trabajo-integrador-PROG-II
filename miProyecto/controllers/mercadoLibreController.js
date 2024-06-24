@@ -6,6 +6,7 @@ const dbPosta = require("../database/models");
 let bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
 const { Op, Association } = require("sequelize");
+const Product = require("../database/models/Product");
 
 let mercadoLibreController = {
   index: function (req, res) {
@@ -36,22 +37,20 @@ let mercadoLibreController = {
     })
       .then(data => {
         console.log(data)
-        return res.render("product", {product: data, user: req.session.user})
+        dbPosta.Comentario.findAll({
+          where: { producto_id: data.id},
+          include: [
+            { association: "coment_user"}
+          ]
+        })
+        .then(comentarios => {
+          console.log(comentarios)
+          return res.render("product", {product: data, coment: comentarios})
+        })
       })
       .catch(error => {
         console.log(error);
     })
-    // let rta;
-    // for (let i = 0; i < db.lista.length; i++) {
-    //   if (id.toLowerCase() === db.lista[i].nombre.toLowerCase()) {
-    //     rta = db.lista[i];
-    //   }
-    // }
-    // if (rta.length === 0) {
-    //   return res.send("El producto no esta disponible");
-    // } else {
-    //   return res.render("product", { info: rta });
-    // }
   },
   profile: function (req, res) {
     let id = req.params.idUsuario;
@@ -64,7 +63,16 @@ let mercadoLibreController = {
       ]
     })
       .then(function (data) {
-          return res.render("profile", {info: data})
+        dbPosta.Product.findAll({
+          where: { usuario_id: data.id},
+          order: [["created_at", "DESC"]],
+          include: [
+            { association: "coment_product"}
+          ]
+        })
+        .then(producto => {
+          return res.render ("profile", { info: data, producto: producto})
+        })
       })
       .catch(function (error) {
         console.log(error);
@@ -122,7 +130,7 @@ let mercadoLibreController = {
       },
     })
       .then(function (result) {
-        return res.redirect(`/bears/profile`);
+        return res.redirect(`/bears/profile/${id}`);
       })
       .catch(function (err) {
         console.log(err);
@@ -277,7 +285,23 @@ let mercadoLibreController = {
 
       }
     }
+  },
+  deleteProduct: function(req, res){
+    let id = req.params.id
+    console.log("HOLU")
+    console.log(id)
+    if(req.session.user){
+      dbPosta.Product.destroy({
+        where: {id: id}
+      })
+      .then(function(data){
+        res.redirect("/bears")
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+    }
   }
-};
+}
 
 module.exports = mercadoLibreController;

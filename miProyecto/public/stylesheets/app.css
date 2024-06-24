@@ -392,6 +392,17 @@ hr {
   margin-bottom: 15px;
 }
 
+.buy-after-button {
+  background-color: var(--light-blue);
+  font-size: 0.8em;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 12px;
+  margin-right: 8px ;
+}
+
 .action-button {
   border: none;
   border-radius: 8px;
