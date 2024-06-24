@@ -20,7 +20,7 @@
 			<% if (locals.user && locals.user.id === product.usuario_id) { %>
 			<p class="product-detail-description">
 				<button class="buy-after-button">
-				<a href="http://localhost:3000/bears/productAdd">Editar</a>
+				<a href="http://localhost:3000/bears/productEdit/<%= product.id %>">Editar</a>
 				</button>
 				<button class="buy-after-button">
 				<a href="http://localhost:3000/bears/deleteProduct/<%= product.id %>"> Borrar</a>
@@ -31,7 +31,7 @@
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src=/images/users/defal.png alt="" class="product-detail-img">
+					<img src="/images/products/<%=product.foto_producto %>" alt="" class="product-detail-img">
 					<p class="product-detail-description">
 						<%= product.descripcion_producto %>
 					</p>

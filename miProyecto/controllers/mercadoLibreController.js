@@ -323,6 +323,45 @@ let mercadoLibreController = {
         console.log(error)
       })
     }
+  },
+  productEdit: function(req, res){
+    let id = req.params.id
+
+    dbPosta.Product.findByPk(id)
+      .then(function(data){
+        return res.render("product-edit", {data: data})
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+  },
+  editarProducto: function(req, res){
+      const addProductValidations = validationResult(req);
+      if (addProductValidations.errors.length > 0) {
+        return res.render("product-edit", {
+          errors: addProductValidations.mapped(),
+          oldData: req.body,
+          data: {id: req.params.id}
+        });
+      }
+      let id = req.session.user.id;
+      data = req.body;
+  
+      let producto = {
+        foto_producto: data.imagen,
+        nombre_producto: data.nombre,
+        descripcion_producto: data.descripcion,
+        usuario_id: id,
+      };
+      dbPosta.Product.update(producto, {
+        where: {id: req.params.id}
+      })
+        .then((productoCreado) => {
+          return res.redirect(`/bears/product/${req.params.id}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   }
 }
 

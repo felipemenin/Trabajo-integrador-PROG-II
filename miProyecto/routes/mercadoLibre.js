@@ -16,6 +16,7 @@ router.get('/profileEdit', mercadoLibreController.edit)
 router.get('/register', mercadoLibreController.register);
 router.get('/search', mercadoLibreController.search);
 router.get("/deleteProduct/:id", mercadoLibreController.deleteProduct);
+router.get("/productEdit/:id", mercadoLibreController.productEdit)
 
 //aca van los post
 
@@ -25,5 +26,6 @@ router.post('/logout', mercadoLibreController.logout);
 router.post("/addProduct", addProductValidator,mercadoLibreController.store)
 router.post("/editProfile",profileEditValidator ,mercadoLibreController.edit_profile)
 router.post("/comment/:id", commentValidator, mercadoLibreController.comment)
+router.post("/editar/:id", addProductValidator, mercadoLibreController.editarProducto)
 
 module.exports = router;
