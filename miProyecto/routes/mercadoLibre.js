@@ -24,6 +24,6 @@ router.post("/loginprofile", loginValidations, mercadoLibreController.loginProfi
 router.post('/logout', mercadoLibreController.logout);
 router.post("/addProduct", addProductValidator,mercadoLibreController.store)
 router.post("/editProfile",profileEditValidator ,mercadoLibreController.edit_profile)
-router.post("/comment", commentValidator, mercadoLibreController.comment)
+router.post("/comment/:id", commentValidator, mercadoLibreController.comment)
 
 module.exports = router;

@@ -36,15 +36,14 @@ let mercadoLibreController = {
     ]
     })
       .then(data => {
-        console.log(data)
         dbPosta.Comentario.findAll({
           where: { producto_id: data.id},
+          order: [["created_at", "DESC"]],
           include: [
             { association: "coment_user"}
           ]
         })
         .then(comentarios => {
-          console.log(comentarios)
           return res.render("product", {product: data, coment: comentarios})
         })
       })
@@ -248,7 +247,7 @@ let mercadoLibreController = {
         .then(function (user) {
           req.session.user = user;
           if (req.body.recordarme != undefined) {
-            res.cookie("userId", user.id, { maxAge: 1000 * 60 * 5 });
+            res.cookie("userId", user.id, { maxAge: 1000 * 60 * 1000 });
           }
           return res.redirect("/bears");
         })
@@ -267,22 +266,45 @@ let mercadoLibreController = {
   comment: function(req, res){
     const resultValidation = validationResult(req);
     if (req.session.user != undefined){
-      if( resultValidation.isEmpty()){
+      if(resultValidation.isEmpty()){
         let id = req.params.id;
         dbPosta.Comentario.create({
-          comentario: req.params.text,
-          producto_id: req.params.idProducto,
+          comentario: req.body.text,
+          producto_id: id,
           usuario_id: req.session.user.id
         })
         .then(function(data){
-          res.redirect(`/bears/product/${id}`)
+          return res.redirect(`/bears/product/${id}`)
         })
         .catch(function (error) {
           console.log(error);
         })
       } else {
         let id = req.params.id
-
+        dbPosta.Product.findByPk(id, {
+          include: [ {association: "coment_product" },
+          { association: "user_product"}
+        ]
+        })
+          .then(data => {
+            dbPosta.Comentario.findAll({
+              where: { producto_id: data.id},
+              include: [
+                { association: "coment_user"}
+              ]
+            })
+            .then(comentarios => {
+              console.log(comentarios)
+              return res.render("product", {
+                errors: resultValidation.mapped(),
+                product: data,
+                coment: comentarios
+              })   
+            })
+          })
+          .catch(error => {
+            console.log(error);
+        })
       }
     }
   },

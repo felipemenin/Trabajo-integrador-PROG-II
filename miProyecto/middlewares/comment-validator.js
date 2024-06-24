@@ -6,8 +6,8 @@ const commentValidator = [
     body("text")
     .notEmpty()
     .withMessage("Debes agregar un comentario")
-    .bail()
-    .isLength({min:3}).withMessage("El comentario debe tener al menos 3 caracteres"),
+    .isLength({min:3})
+    .withMessage("El comentario debe tener al menos 3 caracteres"),
 ]
 
 module.exports = commentValidator

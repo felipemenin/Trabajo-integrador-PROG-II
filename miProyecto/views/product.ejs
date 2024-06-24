@@ -57,11 +57,18 @@
 
 					</section>
 					<% if (locals.user != undefined) { %>
-					<form class="form" action="http://localhost:3000/bears" method="get">
-						<input class="form-input" type="text" name="text" value="" placeholder="Agregar comentario">
+					<form class="form" action="http://localhost:3000/bears/comment/<%= product.id %>" method="POST">
+						<input class="form-input" type="text" name="text" value="" placeholder="Comentario...">
+						<% if (locals.errors && errors.text) { %>
+							<div class="error-message"> <%= errors.text.msg %> </div>
+						<% } %>  
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
-					<% } %>
+					<% } else { %>
+						<h2>
+							Debes estar logueado para comentar
+						</h2>
+						<% } %>
 					<hr>
 				</div>
 			</div>

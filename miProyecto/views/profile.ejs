@@ -21,14 +21,16 @@
 				<div class="d-flex align-items-center ">
 					<h1 class="main-title-profile">
 						<%= info.user %>
-							<% if (locals.user && locals.user.id===user.id) { %>
+							<% if (locals.user && locals.user.id === info.id) { %>
 								<a class="profile-a"
 									href="http://localhost:3000/bears/profileEdit">
 									<i class="fas fa-cog"></i>
 								</a>
 								<% } %>
 					</h1>
-					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
+					<% if (locals.user && locals.user.id != info.id) { %>
+						<a class="btn mt-3 ml-4" href="">SEGUIR</a>
+					<% } %>
 				</div>
 				<div>
 					<p>
